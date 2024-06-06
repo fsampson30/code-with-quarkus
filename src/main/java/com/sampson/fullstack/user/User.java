@@ -24,7 +24,7 @@ public class User  extends PanacheEntity {
     @Version
     public int version;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "role")
     public List<String> roles;
