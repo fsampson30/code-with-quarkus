@@ -2,7 +2,7 @@ package com.sampson.fullstack.task;
 
 import com.sampson.fullstack.project.Project;
 import com.sampson.fullstack.user.User;
-import io.quarkus.hibernate.reactive.panache.Panache;
+import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -10,7 +10,7 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "tasks")
-public class Task extends Panache {
+public class Task extends PanacheEntity {
 
     @Column(nullable = false)
     public String title;
