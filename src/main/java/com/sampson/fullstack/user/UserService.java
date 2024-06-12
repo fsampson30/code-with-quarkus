@@ -3,9 +3,12 @@ package com.sampson.fullstack.user;
 import com.sampson.fullstack.project.Project;
 import com.sampson.fullstack.task.Task;
 import io.quarkus.elytron.security.common.BcryptUtil;
+import io.quarkus.hibernate.reactive.panache.common.WithSession;
 import io.quarkus.hibernate.reactive.panache.common.WithTransaction;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import org.hibernate.ObjectNotFoundException;
 
 import java.util.List;
@@ -24,6 +27,7 @@ public class UserService {
         return User.find("name", name).firstResult();
     }
 
+    @WithTransaction
     public Uni<List<User>> list() {
         return User.listAll();
     }
