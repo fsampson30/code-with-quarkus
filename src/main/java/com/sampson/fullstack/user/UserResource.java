@@ -36,4 +36,12 @@ public class UserResource {
     public Uni<User> get(@PathParam("id") long id) {
         return userService.findById(id);
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    public Uni<User> update (@PathParam("id") long id, User user) {
+        user.id = id;
+        return userService.update(user);
+    }
 }
