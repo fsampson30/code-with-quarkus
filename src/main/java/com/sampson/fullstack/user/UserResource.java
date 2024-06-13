@@ -30,4 +30,10 @@ public class UserResource {
     public Uni<User> create(User user) {
         return userService.create(user);
     }
+
+    @GET
+    @Path("{id}")
+    public Uni<User> get(@PathParam("id") long id) {
+        return userService.findById(id);
+    }
 }

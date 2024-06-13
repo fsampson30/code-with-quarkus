@@ -16,6 +16,7 @@ import java.util.List;
 @ApplicationScoped
 public class UserService {
 
+    @WithTransaction
     public Uni<User> findById(long id) {
         return User.<User>findById(id)
                 .onItem()
@@ -23,6 +24,7 @@ public class UserService {
                 .failWith(() -> new ObjectNotFoundException(id, "User"));
     }
 
+    @WithTransaction
     public Uni<User> findByName(String name) {
         return User.find("name", name).firstResult();
     }
