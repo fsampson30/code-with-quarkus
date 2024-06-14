@@ -55,6 +55,7 @@ public class UserService {
         ).asTuple().chain(t -> u.delete()));
     }
 
+    @WithTransaction
     public Uni<User> getCurrentUser() {
         return User.find("order by ID").firstResult();
     }

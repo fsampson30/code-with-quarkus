@@ -50,4 +50,10 @@ public class UserResource {
     public Uni<Void> delete (@PathParam("id") long id) {
         return userService.delete(id);
     }
+
+    @GET
+    @Path("self")
+    public Uni<User> getCurrentUser() {
+        return userService.getCurrentUser();
+    }
 }
