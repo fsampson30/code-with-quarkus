@@ -21,6 +21,7 @@ public class TaskService {
         this.userService = userService;
     }
 
+    @WithTransaction
     public Uni<Task> findById(long id) {
         return userService.getCurrentUser()
                 .chain(user -> Task.<Task>findById(id)
@@ -32,6 +33,7 @@ public class TaskService {
                         }));
     }
 
+    @WithTransaction
     public Uni<List<Task>> listForUser() {
         return userService.getCurrentUser()
                 .chain(user -> Task.find("user", user).list());
