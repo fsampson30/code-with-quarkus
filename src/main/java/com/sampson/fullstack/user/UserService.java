@@ -3,12 +3,9 @@ package com.sampson.fullstack.user;
 import com.sampson.fullstack.project.Project;
 import com.sampson.fullstack.task.Task;
 import io.quarkus.elytron.security.common.BcryptUtil;
-import io.quarkus.hibernate.reactive.panache.common.WithSession;
 import io.quarkus.hibernate.reactive.panache.common.WithTransaction;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
 import org.hibernate.ObjectNotFoundException;
 
 import java.util.List;
@@ -58,6 +55,11 @@ public class UserService {
     @WithTransaction
     public Uni<User> getCurrentUser() {
         return User.find("order by ID").firstResult();
+    }
+
+    public static boolean matches(User user, String password) {
+        return BcryptUtil.matches(password, user.password);
+
     }
 
 }
