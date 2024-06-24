@@ -6,12 +6,21 @@ import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.reactive.panache.common.WithTransaction;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.hibernate.ObjectNotFoundException;
 
 import java.util.List;
 
 @ApplicationScoped
 public class UserService {
+
+    private final JsonWebToken jwt;
+
+    @Inject
+    public UserService(JsonWebToken jwt) {
+        this.jwt = jwt;
+    }
 
     @WithTransaction
     public Uni<User> findById(long id) {
@@ -54,7 +63,7 @@ public class UserService {
 
     @WithTransaction
     public Uni<User> getCurrentUser() {
-        return User.find("order by ID").firstResult();
+        return findByName(jwt.getName());
     }
 
     public static boolean matches(User user, String password) {
