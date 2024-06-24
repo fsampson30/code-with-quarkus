@@ -7,6 +7,8 @@ import io.quarkus.hibernate.reactive.panache.common.WithTransaction;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.ClientErrorException;
+import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.hibernate.ObjectNotFoundException;
 
@@ -49,7 +51,10 @@ public class UserService {
     @WithTransaction
     public Uni<User> update(User user) {
         return findById(user.id)
-                .chain(u -> User.getSession())
+                .chain(u -> {
+                    user.setPassword(u.password);
+                    return User.getSession();
+                })
                 .chain(s -> s.merge(user));
     }
 
@@ -64,6 +69,18 @@ public class UserService {
     @WithTransaction
     public Uni<User> getCurrentUser() {
         return findByName(jwt.getName());
+    }
+
+    @WithTransaction
+    public Uni<User> changePassword(String currentPassword, String newPassword) {
+        return getCurrentUser()
+                .chain(u -> {
+                    if (!matches(u, currentPassword)) {
+                        throw new ClientErrorException("Current password does not match", Response.Status.CONFLICT);
+                    }
+                    u.setPassword(BcryptUtil.bcryptHash(newPassword));
+                    return  u.persistAndFlush();
+                });
     }
 
     public static boolean matches(User user, String password) {
