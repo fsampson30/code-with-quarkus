@@ -11,6 +11,7 @@ import java.util.List;
 
 @Path("/api/v1/users")
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed("user")
 public class UserResource {
 
     private final  UserService userService;
@@ -54,6 +55,7 @@ public class UserResource {
 
     @GET
     @Path("self")
+    @RolesAllowed("user")
     public Uni<User> getCurrentUser() {
         return userService.getCurrentUser();
     }
