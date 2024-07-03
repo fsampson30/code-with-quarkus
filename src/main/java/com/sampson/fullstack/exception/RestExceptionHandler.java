@@ -6,7 +6,7 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 import org.hibernate.HibernateException;
 import org.hibernate.ObjectNotFoundException;
-import org.hibernate.StaleObjectStateException;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -22,7 +22,7 @@ public class RestExceptionHandler implements ExceptionMapper<HibernateException>
         if (hasExceptionInChain(exception, ObjectNotFoundException.class)) {
             return Response.status(Response.Status.NOT_FOUND).entity(exception.getMessage()).build();
         }
-        if (hasExceptionInChain(exception, StaleObjectStateException.class) || hasPostgresErrorCode(exception, PG_UNIQUE_VIOLATION_ERROR)){
+        if (hasExceptionInChain(exception, ConstraintViolationException.class) || hasPostgresErrorCode(exception, PG_UNIQUE_VIOLATION_ERROR)){
             return Response.status(Response.Status.CONFLICT).build();
         }
         return Response.status(Response.Status.BAD_REQUEST).entity("\"" + exception.getMessage() + "\"").build();
