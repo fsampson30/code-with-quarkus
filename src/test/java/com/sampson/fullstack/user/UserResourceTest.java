@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class UserResourceTest {
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void list() {
         given()
                 .when().get("/api/v1/users")
@@ -27,7 +27,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false,user = "admin", roles = "admin")
     void create() {
         given()
                 .body("{\"name\":\"test\",\"password\":\"test\",\"roles\":[\"user\"]}")
@@ -43,7 +43,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "user", roles = "user")
+    @TestSecurity(authorizationEnabled = true, user = "user", roles = "user")
     void createUnauthorized() {
         given()
                 .body("{\"name\":\"test-unauthorized\",\"password\":\"test\",\"roles\":[\"user\"]}")
@@ -54,7 +54,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void createDuplicate() {
         given()
                 .body("{\"name\":\"user\",\"password\":\"test\",\"roles\":[\"user\"]}")
@@ -65,7 +65,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void get() {
         given()
                 .when().get("/api/v1/users/0")
@@ -75,7 +75,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void getNotFound() {
         given()
                 .when().get("/api/v1/users/1337")
@@ -84,7 +84,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void update() {
         var user = given()
                 .body("{\"name\":\"to-update\",\"password\":\"test\",\"roles\":[\"user\"]}")
@@ -105,7 +105,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void updateOptimisticLock() {
         given()
                 .body("{\"name\":\"updated\",\"version\":1337}")
@@ -116,7 +116,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void updateNotFound() {
         given()
                 .body("{\"name\":\"i-dont-exist\",\"password\":\"pa33\"}")
@@ -127,7 +127,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "admin")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void delete() {
         var toDelete = given()
                 .body("{\"name\":\"to-delete\",\"password\":\"test\"}")
@@ -152,7 +152,7 @@ class UserResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "admin", roles = "user")
+    @TestSecurity(authorizationEnabled = false, user = "admin", roles = "user")
     void changePassword() {
         given()
                 .body("{\"currentPassword\": \"quarkus\", \"newPassword\": \"changed\"}")
