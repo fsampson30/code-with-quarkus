@@ -101,7 +101,7 @@ class TaskResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "user", roles = "user")
+    @TestSecurity(authorizationEnabled = false, user = "user", roles = "user")
     void delete() {
         var toDelete = given()
                 .body("{\"title\":\"to-delete\"}")

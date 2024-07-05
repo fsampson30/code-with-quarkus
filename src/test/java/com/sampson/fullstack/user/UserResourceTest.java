@@ -108,7 +108,7 @@ class UserResourceTest {
     @TestSecurity(authorizationEnabled = false, user = "admin", roles = "admin")
     void updateOptimisticLock() {
         given()
-                .body("{\"name\":\"updated\",\"version\":1337}")
+                .body("{\"name\":\"updated\",\"version\":1}")
                 .contentType(ContentType.JSON)
                 .when().put("/api/v1/users/0")
                 .then()

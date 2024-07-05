@@ -99,7 +99,7 @@ class ProjectResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "user", roles = "user")
+    @TestSecurity(authorizationEnabled = false, user = "user", roles = "user")
     void delete() {
         var toDelete = given().body("{\"name\":\"to-delete\"}").contentType(ContentType.JSON)
                 .post("/api/v1/projects").as(Project.class);
