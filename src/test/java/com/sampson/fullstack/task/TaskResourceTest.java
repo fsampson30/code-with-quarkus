@@ -1,7 +1,6 @@
 
 package com.sampson.fullstack.task;
 
-import com.sampson.fullstack.user.User;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
 import io.restassured.http.ContentType;
@@ -9,7 +8,6 @@ import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @QuarkusTest
@@ -84,23 +82,7 @@ class TaskResourceTest {
                 .statusCode(404);
     }
 
-   /* @Test
-    @TestSecurity(user = "user", roles = "user")
-    void updateForbidden() {
-        final User admin = User.<User>findById(0L).await().indefinitely();
-        Task adminTask = new Task();
-        adminTask.title = "admins-task";
-        adminTask.user = admin;
-        adminTask = adminTask.<Task>persistAndFlush().await().indefinitely();
-        given()
-                .body("{\"title\":\"to-update\"}")
-                .contentType(ContentType.JSON)
-                .when().put("/api/v1/tasks/" + adminTask.id)
-                .then()
-                .statusCode(401); // TODO: TaskService UnauthorizedException should be changed to ForbiddenException
-    }*/
-
-    /*@Test
+    @Test
     @TestSecurity(authorizationEnabled = false, user = "user", roles = "user")
     void delete() {
         var toDelete = given()
@@ -111,10 +93,9 @@ class TaskResourceTest {
                 .when().delete("/api/v1/tasks/" + toDelete.id)
                 .then()
                 .statusCode(204);
-        assertThat(Task.findById(toDelete.id).await().indefinitely(), nullValue());
-    }*/
+    }
 
-   /* @Test
+    @Test
     @TestSecurity(user = "user", roles = "user")
     void setComplete() {
         var toSetComplete = given()
@@ -127,10 +108,5 @@ class TaskResourceTest {
                 .when().put("/api/v1/tasks/" + toSetComplete.id + "/complete")
                 .then()
                 .statusCode(200);
-        assertThat(Task.findById(toSetComplete.id).await().indefinitely(),
-                allOf(
-                        hasProperty("complete", notNullValue()),
-                        hasProperty("version", is(toSetComplete.version + 1))
-                ));
-    }*/
+    }
 }
