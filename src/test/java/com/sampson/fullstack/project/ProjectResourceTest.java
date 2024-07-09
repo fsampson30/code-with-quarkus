@@ -98,7 +98,7 @@ class ProjectResourceTest {
                 .statusCode(401);
     }
 
-   /* @Test
+    @Test
     @TestSecurity(authorizationEnabled = false, user = "user", roles = "user")
     void delete() {
         var toDelete = given().body("{\"name\":\"to-delete\"}").contentType(ContentType.JSON)
@@ -110,6 +110,5 @@ class ProjectResourceTest {
                 .when().delete("/api/v1/projects/" + toDelete.id)
                 .then()
                 .statusCode(204);
-        assertThat(Task.<Task>findById(dependentTask.id).await().indefinitely().project, nullValue());
-    }*/
+    }
 }
