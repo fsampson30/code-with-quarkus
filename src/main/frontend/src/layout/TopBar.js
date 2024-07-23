@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 export const TopBar = ({goHome, newTask, toggleDrawer}) => (
     <AppBar position='fixed' sx={{zIndex: theme =>
       theme.zIndex.drawer + 1}}>
-      <ToolBar>
+      <Toolbar>
         <IconButton size='large' edge='start' color='inherit' aria-label='menu' onClick={toggleDrawer}>
             <MenuIcon />
         </IconButton>
@@ -26,6 +26,6 @@ export const TopBar = ({goHome, newTask, toggleDrawer}) => (
             </IconButton>
         </Tooltip>
         <AccountCircleIcon />
-      </ToolBar>
+      </Toolbar>
       </AppBar>
 );
