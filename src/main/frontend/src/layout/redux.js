@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const layoutSlice = createSlice({
     name: 'layout',
@@ -16,4 +16,4 @@ export const {
     toggleDrawer
 } = layoutSlice.actions;
 
-export const {reducer} = layoutSlice;
+export const { reducer } = layoutSlice;
