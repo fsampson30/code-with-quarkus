@@ -1,7 +1,7 @@
-import { createTheme } from "@mui/material";
+import {createTheme} from '@mui/material';
 
 export const theme = createTheme({
-    layout: {
-        drawerWidth: 240,
-    }
+  layout: {
+    drawerWidth: 240,
+  }
 });
