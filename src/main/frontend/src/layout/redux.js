@@ -15,5 +15,4 @@ const layoutSlice = createSlice({
 export const {
     toggleDrawer
 } = layoutSlice.actions;
-
 export const { reducer } = layoutSlice;
