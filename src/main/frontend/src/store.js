@@ -1,6 +1,7 @@
-import {combineReducers, configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import {logout, reducer as authReducer} from './auth';
 import {reducer as layoutReducer} from './layout';
-import { logout } from './auth/redux';
+import {api as userApi} from './users';
 
 const appReducer = combineReducers({
   auth: authReducer,
