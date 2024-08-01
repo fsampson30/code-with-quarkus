@@ -5,7 +5,8 @@ import {api as userApi} from './users';
 
 const appReducer = combineReducers({
   auth: authReducer,
-  layout: layoutReducer
+  layout: layoutReducer,
+  [userApi.reducerPath] : userApi.reducer
 });
 
 const rootReducer = (state, action) => {
