@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import {InitialPage} from './InitialPage';
+import { Login } from './auth';
+import { Users } from './users';
 
 export const App = () => (
   <BrowserRouter>
