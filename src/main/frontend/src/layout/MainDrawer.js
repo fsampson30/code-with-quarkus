@@ -38,7 +38,7 @@ export const MainDrawer = ({ drawerOpen, toggleDrawer }) => (
                 <Item disableTooltip={drawerOpen} Icon={InboxIcon} title='Todo' to='/' />
                 <HasRole role='admin'>
                     <Divider/>
-                    /<Item disableTooltip={drawerOpen} Icon={PersonIcon} title='Users' to='/users'/>
+                    <Item disableTooltip={drawerOpen} Icon={PersonIcon} title='Users' to='/users'/>
                 </HasRole>
             </List>
         </Box>
