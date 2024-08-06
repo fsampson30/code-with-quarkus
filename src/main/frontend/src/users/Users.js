@@ -6,7 +6,7 @@ import { Layout } from '../layout';
 
 export const Users = () => {
     const { data: allUsers } = api.endpoints.getUsers.useQuery(undefined, { pollingInterval: 10000 });
-    const { data: self } = api.endpoints.getSelf.useQUery();
+    const { data: self } = api.endpoints.getSelf.useQuery();
     const [deleteUser] = api.endpoints.deleteUser.useMutation();
     return <Layout>
         <Container sx={{ mt: theme => theme.spacing(2) }}>
