@@ -6,6 +6,7 @@ import { Box, Toolbar } from '@mui/material';
 import { toggleDrawer } from './';
 import { TopBar } from './TopBar';
 import { MainDrawer } from './MainDrawer';
+import { ChangePasswordDialog } from '../users/ChangePasswordDialog';
 
 export const Layout = ({ children }) => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export const Layout = ({ children }) => {
           {children}
         </Box>
       </Box>
+      <ChangePasswordDialog />
     </Box>
   );
 };
