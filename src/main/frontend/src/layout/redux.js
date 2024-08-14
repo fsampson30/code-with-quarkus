@@ -27,6 +27,6 @@ const layoutSlice = createSlice({
 });
 
 export const {
-    openChangePassword, closeChangePassword,toggleDrawer
+    openChangePassword, closeChangePassword,openNewProject, closeNewProject,toggleDrawer
 } = layoutSlice.actions;
 export const { reducer } = layoutSlice;
