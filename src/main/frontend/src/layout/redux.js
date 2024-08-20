@@ -6,6 +6,7 @@ const layoutSlice = createSlice({
         changePasswordOpen: false,
         drawerOpen: true,
         newProjectOpen: false,
+        openTask: undefined
     },
     reducers: {
         openChangePassword: state => {

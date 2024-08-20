@@ -1,4 +1,3 @@
 
 export {Layout} from './Layout';
-export {reducer, toggleDrawer, closeChangePassword, openChangePassword,openNewProject, closeNewProject
-} from './redux';
+export {reducer, openChangePassword, closeChangePassword, openNewProject, closeNewProject, clearOpenTask, newTask, setOpenTask, toggleDrawer} from './redux';
