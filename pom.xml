@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sampson</groupId>
-  <artifactId>code-with-quarkus</artifactId>
+  <artifactId>task-manager</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
     <compiler-plugin.version>3.12.1</compiler-plugin.version>
@@ -16,6 +16,10 @@
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.2.5</surefire-plugin.version>
     <jkube.generator.name>fsampson30/task-manager:latest</jkube.generator.name>
+    <jkube.createExternalUrls>true</jkube.createExternalUrls>
+    <jkube.domain>192.168.49.2.nip.io</jkube.domain>
+    <postgresql.serviceName>postgresql</postgresql.serviceName>
+    <jkube.enricher.jkube-project-label.group>${project.artifactId}</jkube.enricher.jkube-project-label.group>
   </properties>
   <dependencyManagement>
     <dependencies>
