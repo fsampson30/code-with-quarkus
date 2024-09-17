@@ -17,7 +17,7 @@
     <surefire-plugin.version>3.2.5</surefire-plugin.version>
     <jkube.generator.name>fsampson30/task-manager:latest</jkube.generator.name>
     <jkube.createExternalUrls>true</jkube.createExternalUrls>
-    <jkube.domain>192.168.49.2.nip.io</jkube.domain>
+    <jkube.domain>192.168.0.12.nip.io</jkube.domain>
     <postgresql.serviceName>postgresql</postgresql.serviceName>
     <jkube.enricher.jkube-project-label.group>${project.artifactId}</jkube.enricher.jkube-project-label.group>
   </properties>
